@@ -10,6 +10,7 @@ import {fromLonLat} from 'ol/proj';
 import sync from 'ol-hashed';
 import DragAndDrop from 'ol/interaction/DragAndDrop';
 import Modify from 'ol/interaction/Modify';
+import Draw from 'ol/interaction/Draw';
 
 const map = new Map({
     target: 'map-container',
@@ -32,6 +33,11 @@ map.addInteraction(new DragAndDrop({
 }));
 
 map.addInteraction(new Modify({
+    source: source
+}));
+
+map.addInteraction(new Draw({
+    type: 'Polygon',
     source: source
 }));
 
