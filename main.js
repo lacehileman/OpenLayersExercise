@@ -9,6 +9,7 @@ import XYZSource from 'ol/source/XYZ';
 import {fromLonLat} from 'ol/proj';
 import sync from 'ol-hashed';
 import DragAndDrop from 'ol/interaction/DragAndDrop';
+import Modify from 'ol/interaction/Modify';
 
 const map = new Map({
     target: 'map-container',
@@ -28,6 +29,10 @@ map.addLayer(layer);
 map.addInteraction(new DragAndDrop({
     source: source,
     formatConstructors: [GeoJSON]
+}));
+
+map.addInteraction(new Modify({
+    source: source
 }));
 
 navigator.geolocation.getCurrentPosition(function(pos) {
