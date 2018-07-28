@@ -52,3 +52,16 @@ navigator.geolocation.getCurrentPosition(function(pos) {
 });
 
 sync(map);
+
+const clear = document.getElementById('clear');
+clear.addEventListener('click', function() {
+    source.clear();
+});
+
+const format = new GeoJSON({featureProjection: 'EPSG:3857'});
+const download = document.getElementById('download');
+source.on('change', function() {
+    const features = source.getFeatures();
+    const json = format.writeFeatures(features);
+    download.href = 'data:text/json;cahrset=utf-8,' + json;
+});
